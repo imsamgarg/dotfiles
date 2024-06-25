@@ -110,6 +110,16 @@ bindsym $mod+t focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+
+# Take a full screen screenshot with notification
+bindsym Print exec --no-startup-id gnome-screenshot -i && notify-send "Screenshot taken"
+
+# Take a screenshot of a selected area with notification
+bindsym Shift+Print exec --no-startup-id gnome-screenshot -a && notify-send "Screenshot taken"
+
+# Take a screenshot of the current window with notification
+bindsym Mod1+Print exec --no-startup-id gnome-screenshot -w && notify-send "Screenshot taken"
+
 # focus the child container
 #bindsym $mod+d focus child
 # Styling for tabbed containers
