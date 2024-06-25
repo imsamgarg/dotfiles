@@ -38,3 +38,5 @@ vim.api.nvim_set_keymap("n", "<leader>tQ", ":bd!<CR>", { noremap = true, silent 
 vim.api.nvim_set_keymap("n", "<leader>tl", ":bnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>th", ":bprev<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<leader>tm", ":tabmove<Space>", { noremap = true })
+vim.api.nvim_set_keymap("n", "gh", ":bnext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gl", ":bprev<CR>", { noremap = true, silent = true })

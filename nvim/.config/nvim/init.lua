@@ -14,6 +14,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_user_command("BdeleteAll", function()
+	vim.cmd("bufdo bd")
+end, {})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -37,5 +41,6 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_ui = require("lazy-ui")
 require("lazy").setup("plugins", lazy_ui)
 
+require("extract_strings")
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

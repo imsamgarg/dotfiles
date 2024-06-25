@@ -22,34 +22,35 @@ return {
 		-- }
 		dap.adapters.dart = {
 			type = "executable",
-			command = "puro dart",
+			command = "fvm dart",
 			args = { "debug_adapter" },
 		}
 		dap.adapters.flutter = {
 			type = "executable",
-			command = "puro flutter",
+			command = "fvm flutter",
 			args = { "debug_adapter" },
 		}
+
+		-- -- run this command to get the path fvm api project | grep 'path' | awk '{print }' | sed 's/[, ]/ /g'
+		-- local flutter_path = vim.fn.system("fvm api project | grep 'path' | awk '{print $2}' | sed 's/[, ]/ /g'")
+		-- print(flutter_path)
+		-- -- add /bin/ to the end of the path
+		-- flutter_path = flutter_path .. "/bin/"
+		-- print("flutter_path: " .. flutter_path)
+
+		-- get working directory
 		dap.configurations.dart = {
 			{
 				type = "dart",
 				request = "launch",
 				name = "Launch dart",
-				dartsdkpath = "$HOME/.puro/bin",
-				fluttersdkpath = "$HOME/.puro/bin",
-				-- dartSdkPath = "/opt/flutter/bin/cache/dart-sdk/bin/dart", -- ensure this is correct
-				-- flutterSdkPath = "/opt/flutter/bin/flutter",                  -- ensure this is correct
 				program = "${workspaceFolder}/bin/main.dart", -- ensure this is correct
 				cwd = "${workspaceFolder}",
 			},
 			{
-				type = "flutter",
+				type = "dart",
 				request = "launch",
 				name = "Launch flutter",
-				dartsdkpath = "$HOME/.puro/bin",
-				fluttersdkpath = "$HOME/.puro/bin",
-				-- dartSdkPath = "/opt/flutter/bin/cache/dart-sdk/bin/dart", -- ensure this is correct
-				-- flutterSdkPath = "/opt/flutter/bin/flutter",             -- ensure this is correct
 				program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
 				cwd = "${workspaceFolder}",
 			},
