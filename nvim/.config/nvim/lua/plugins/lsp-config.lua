@@ -137,6 +137,7 @@ return { -- LSP Configuration & Plugins
           })
         end
 
+        require("plugins.flutter-lsp.commands")
         -- The following autocommand is used to enable inlay hints in your
         -- code, if the language server you are using supports them
         --
