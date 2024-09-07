@@ -1,0 +1,305 @@
+{
+  "TextEditingController": {
+    "prefix": "tec",
+    "body": ["late final $1Controller = TextEditingController();"],
+    "description": "Create TextEditingController"
+  },
+  "ValueNotifierController": {
+    "prefix": "vec",
+    "body": ["late final $1Controller = ValueNotifier($2);"],
+    "description": "Create TextEditingController"
+  },
+  "Return if not mounted": {
+    "prefix": "rnm",
+    "body": "if (!mounted) return;"
+  },
+  "Global Key": {
+    "prefix": "form_key",
+    "body": "late final _formKey = GlobalKey<FormState>();"
+  },
+  "Navigator": {
+    "prefix": "nav",
+    "body": "Navigator.of(context).$1"
+  },
+  "Nav pop": {
+    "prefix": "pop",
+    "body": "Navigator.pop(context);"
+  },
+  "Scaffold Messenger": {
+    "prefix": "sm",
+    "body": "ScaffoldMessenger.of(context).$1"
+  },
+  "Assign Scaffold Messenger": {
+    "prefix": "smv",
+    "body": "final messenger = ScaffoldMessenger.of(context);"
+  },
+  "Snack Bar": {
+    "prefix": "snackBar",
+    "body": "ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$1')));"
+  },
+  "Push Material Route": {
+    "prefix": "push-material-route",
+    "body": [
+      "Navigator.push(",
+      "  context,",
+      "  MaterialPageRoute(builder: (context) {",
+      "    return $1;",
+      "  }),",
+      ");"
+    ]
+  },
+  "Validate Form": {
+    "prefix": "valiate-form",
+    "body": "if(!_formKey.currentState!.validate()) return;"
+  },
+  "Async State Notifier Class": {
+    "prefix": "async-state-notifier-class",
+    "body": [
+      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
+      "class $1Controller extends StateNotifier<AsyncValue<void>> {",
+      " $1Controller(this._repo):super(const AsyncData(null));",
+      " final $2Repository _repo;",
+      "",
+      "Future<ResultBase<void>> $1() async {",
+      "  state = const AsyncLoading();",
+      "  state = await AsyncValue.guard(() {",
+      "    return _repo.$1();",
+      "  });",
+      "",
+      "  return state.toResultWithData(null);",
+      "}",
+      "}",
+      "final $1Provider = ",
+      "StateNotifierProvider.autoDispose<$1Controller,AsyncValue<void>>((ref){",
+      "return $1Controller(ref.watch($2RepositoryProvider));",
+      "});"
+    ]
+  },
+  "Media Query": {
+    "prefix": "mq",
+    "body": "final mq = MediaQuery.of(context);"
+  },
+  "Media Query Size": {
+    "prefix": "size",
+    "body": "final size = MediaQuery.sizeOf(context);"
+  },
+  "Media Query Size Width Height": {
+    "prefix": "size-w-h",
+    "body": [
+      "final size = MediaQuery.sizeOf(context);",
+      "final h = size.height;",
+      "final w = size.width;"
+    ]
+  },
+  "Theme": {
+    "prefix": "theme",
+    "body": "final theme = Theme.of(context);"
+  },
+  "App Localization": {
+    "prefix": "localization",
+    "body": "final l10n = AppLocalizations.of(context)!;"
+  },
+  "Future Builder": {
+    "prefix": "f-builder",
+    "description": "",
+    "body": [
+      "FutureBuilder(",
+      " future: $1,",
+      " builder: (context, snapshot){",
+      "  if(snapshot.hasError){",
+      "    return Text('Something went wrong!!');",
+      "  }",
+      "   ",
+      "  if(snapshot.hasData){",
+      "    final data = snapshot.data;",
+      "    return $2;",
+      "  }",
+      "   ",
+      "  return const Center(child: CircularProgressIndicator());",
+      " }",
+      ")"
+    ]
+  },
+  "Paging Controller": {
+    "prefix": "paging-controller",
+    "body": [
+      "  PagingController<int,$1>? _pagingController =",
+      "     PagingController<int,$1>(firstPageKey: 0);",
+      "",
+      " @override",
+      " void initState() {",
+      "pagingController?.addPageRequestListener(",
+      "(page) => _fetchPage(page).catchError((e) => pagingController?.error = e),",
+      ");",
+      "   super.initState();",
+      " }",
+      "",
+      " @override",
+      " void dispose() {",
+      "   _pagingController?.dispose();",
+      "   _pagingController = null;",
+      "   super.dispose();",
+      " }",
+      "",
+      " Future<void> _fetchPage(int pageKey) async {",
+      "   const limit = 10;",
+      "    final List<$1> list = await [];",
+      "   if (list.length < limit) {",
+      "     _pagingController?.appendLastPage(list);",
+      "   } else {",
+      "     _pagingController?.appendPage(list, pageKey + 1);",
+      "   }",
+      " }",
+      " Future<void> refresh() async {",
+      "   _pagingController?.refresh();",
+      " }"
+    ]
+  },
+  "Paged View": {
+    "prefix": "paged-view",
+    "body": [
+      "Paged$1View.separated(",
+      "    pagingController: _pagingController!,",
+      "    builderDelegate: PagedChildBuilderDelegate(",
+      "      itemBuilder: (context, item, index) {",
+      "        return  $2;",
+      "      },",
+      "    ),",
+      "    separatorBuilder: (context, index) {",
+      "      return const SizedBox(height: 12);",
+      "    },",
+      ")"
+    ]
+  },
+  "Repository": {
+    "prefix": "repo-riverpod",
+    "body": [
+      "import 'package:dio/dio.dart';",
+      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
+      "",
+      "class $1Repository {",
+      "  final Dio _http;",
+      "  final DioExceptionHandler _errorHandler;",
+      "  $1Repository(this._http) : _errorHandler = defaultDioExceptionHandler;",
+      "",
+      "  $1Repository.test(this._http, this._errorHandler);",
+      "}",
+      "",
+      "final $1RepositoryProvider = Provider<$1Repository>((ref) {",
+      "  return $1Repository(ref.watch(dioProvider));",
+      "});"
+    ]
+  },
+  "Repository Method": {
+    "prefix": "repo-http-method",
+    "body": [
+      "Future<void> $1() {",
+      "  return _errorHandler.handleAndRefineError(() async {",
+      "",
+      "   final response = await _http.get(ApiEndpoints.$2);",
+      "",
+      "    return;",
+      "  });",
+      "}"
+    ]
+  },
+  "Async Controller Method": {
+    "prefix": "async-controller-method",
+    "body": [
+      "Future<ResultBase<void>> $1() async {",
+      "  state = const AsyncLoading();",
+      "  state = await AsyncValue.guard(() {",
+      "    return _repo.$1();",
+      "  });",
+      "",
+      "  return state.toResultWithData(null);",
+      "}"
+    ]
+  },
+  "Loading Button": {
+    "prefix": "loading-button-riverpod",
+    "body": [
+      "Consumer(",
+      "                      builder: (context, ref, child) {",
+      "                        final controller =",
+      "                            ref.watch($1Provider.notifier);",
+      "                        final state = ref.watch($1Provider);",
+      "",
+      "                        return PrimaryButton(",
+      "                          onPressed: () => _submit(controller),",
+      "                          isLoading: state.isLoading,",
+      "                          child: const Text('$1'),",
+      "                        );",
+      "                      },",
+      "                    )"
+    ]
+  },
+  "Pattern Match result": {
+    "prefix": "pattern-match-result",
+    "body": [
+      "switch (result) {",
+      "  case Failure():",
+      "    result.exception.showErrorSnackBar(context);",
+      "  case Success():",
+      "    context.showSuccessSnackBar('$1');",
+      "}"
+    ]
+  },
+  "Riverpod controller state": {
+    "prefix": "r-state-controller",
+    "body": [
+      "final provider = $1;",
+      "final state = ref.watch(provider);",
+      "final controller = ref.watch(provider.notifier);"
+    ]
+  },
+  "Post Frame CallBack": {
+    "prefix": "post-frame-callback",
+    "body": [
+      "WidgetsBinding.instance.addPostFrameCallback((timeStamp) {",
+      "   $1",
+      "});"
+    ]
+  },
+  "result": {
+    "prefix": "result",
+    "body": [
+      "final result = await $1;",
+      "if(!mounted) return;",
+      "switch (result) {",
+      " case Success(:final value):",
+      " case Failure(:final exception):",
+      "   context.showErrorPopup(exception);",
+      "}"
+    ]
+  },
+  "PrimaryButton": {
+    "prefix": "primary-button",
+    "body": [
+      "FullWidthBox(",
+      "  child: PrimaryButton(",
+      "  onPressed: () {},",
+      "  child: const Text('$2'),",
+      "),",
+      "),"
+    ]
+  },
+  "ConsumerPrimaryButton": {
+    "prefix": "consumer-primary-button",
+    "body": [
+      "Consumer(",
+      "  builder: (context, ref, child) {",
+      "    final controller = ref.watch($1Provider.notifier);",
+      "    final state = ref.watch($1Provider);",
+      "    return FullWidthBox(",
+      "      child: PrimaryButton(",
+      "        onPressed: () => _submit(controller),",
+      "        isLoading: state.isLoading,",
+      "        child: const Text('Submit'),",
+      "      ),",
+      "    );",
+      "  },",
+      "),"
+    ]
+  }
+}

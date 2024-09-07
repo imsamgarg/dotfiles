@@ -32,6 +32,7 @@ return { -- Autoformat
 			-- is found.
 			javascript = { { "prettierd", "prettier" } },
 			typescript = { { "prettierd", "prettier" } },
+			json = { { "prettierd", "prettier" } },
 		},
 	},
 }
