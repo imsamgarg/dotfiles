@@ -1,13 +1,13 @@
 {
-	"name": "my-snippets",
-	"contributes": {
-		"snippets": [
-			{
-				"language": [
-					"dart"
-				],
-				"path": "./dart.json"
-			}
-		]
-	}
+  "name": "my-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "dart"
+        ],
+        "path": "./dart.json"
+      }
+    ]
+  }
 }
