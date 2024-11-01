@@ -57,8 +57,9 @@
     "body": [
       "import 'package:flutter_riverpod/flutter_riverpod.dart';",
       "class $1Controller extends StateNotifier<AsyncValue<void>> {",
-      " $1Controller(this._repo):super(const AsyncData(null));",
+      " $1Controller(this._ref):_repo=_ref.watch($2RepositoryProvider),super(const AsyncData(null));",
       " final $2Repository _repo;",
+      " final AutoDisposeRef _ref;",
       "",
       "Future<ResultBase<void>> $1() async {",
       "  state = const AsyncLoading();",
@@ -71,7 +72,7 @@
       "}",
       "final $1Provider = ",
       "StateNotifierProvider.autoDispose<$1Controller,AsyncValue<void>>((ref){",
-      "return $1Controller(ref.watch($2RepositoryProvider));",
+      "return $1Controller(ref);",
       "});"
     ]
   },
