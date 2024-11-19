@@ -3,10 +3,24 @@
   "contributes": {
     "snippets": [
       {
-        "language": [
-          "dart"
-        ],
+        "language": "dart",
         "path": "./dart.json"
+      },
+      {
+        "language": "dart",
+        "path": "./riverpod_repo.json"
+      },
+      {
+        "language": "dart",
+        "path": "./model.json"
+      },
+      {
+        "language": "dart",
+        "path": "./pagination.json"
+      },
+      {
+        "language": "dart",
+        "path": "./riverpod-controller.json"
       }
     ]
   }

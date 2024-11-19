@@ -52,30 +52,6 @@
     "prefix": "valiate-form",
     "body": "if(!_formKey.currentState!.validate()) return;"
   },
-  "Async State Notifier Class": {
-    "prefix": "async-state-notifier-class",
-    "body": [
-      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
-      "class $1Controller extends StateNotifier<AsyncValue<void>> {",
-      " $1Controller(this._ref):_repo=_ref.watch($2RepositoryProvider),super(const AsyncData(null));",
-      " final $2Repository _repo;",
-      " final AutoDisposeRef _ref;",
-      "",
-      "Future<ResultBase<void>> $1() async {",
-      "  state = const AsyncLoading();",
-      "  state = await AsyncValue.guard(() {",
-      "    return _repo.$1();",
-      "  });",
-      "",
-      "  return state.toResultWithData(null);",
-      "}",
-      "}",
-      "final $1Provider = ",
-      "StateNotifierProvider.autoDispose<$1Controller,AsyncValue<void>>((ref){",
-      "return $1Controller(ref);",
-      "});"
-    ]
-  },
   "Media Query": {
     "prefix": "mq",
     "body": "final mq = MediaQuery.of(context);"
@@ -121,86 +97,13 @@
       ")"
     ]
   },
-  "Paging Controller": {
-    "prefix": "paging-controller",
-    "body": [
-      "  PagingController<int,$1>? _pagingController =",
-      "     PagingController<int,$1>(firstPageKey: 0);",
-      "",
-      " @override",
-      " void initState() {",
-      "pagingController?.addPageRequestListener(",
-      "(page) => _fetchPage(page).catchError((e) => pagingController?.error = e),",
-      ");",
-      "   super.initState();",
-      " }",
-      "",
-      " @override",
-      " void dispose() {",
-      "   _pagingController?.dispose();",
-      "   _pagingController = null;",
-      "   super.dispose();",
-      " }",
-      "",
-      " Future<void> _fetchPage(int pageKey) async {",
-      "   const limit = 10;",
-      "    final List<$1> list = await [];",
-      "   if (list.length < limit) {",
-      "     _pagingController?.appendLastPage(list);",
-      "   } else {",
-      "     _pagingController?.appendPage(list, pageKey + 1);",
-      "   }",
-      " }",
-      " Future<void> refresh() async {",
-      "   _pagingController?.refresh();",
-      " }"
-    ]
-  },
-  "Paged View": {
-    "prefix": "paged-view",
-    "body": [
-      "Paged$1View.separated(",
-      "    pagingController: _pagingController!,",
-      "    builderDelegate: PagedChildBuilderDelegate(",
-      "      itemBuilder: (context, item, index) {",
-      "        return  $2;",
-      "      },",
-      "    ),",
-      "    separatorBuilder: (context, index) {",
-      "      return const SizedBox(height: 12);",
-      "    },",
-      ")"
-    ]
-  },
-  "Repository": {
-    "prefix": "repo-riverpod",
-    "body": [
-      "import 'package:dio/dio.dart';",
-      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
-      "",
-      "class $1Repository {",
-      "  final Dio _http;",
-      "  final DioExceptionHandler _errorHandler;",
-      "  $1Repository(this._http) : _errorHandler = defaultDioExceptionHandler;",
-      "",
-      "  $1Repository.test(this._http, this._errorHandler);",
-      "}",
-      "",
-      "final $1RepositoryProvider = Provider<$1Repository>((ref) {",
-      "  return $1Repository(ref.watch(dioProvider));",
-      "});"
-    ]
-  },
   "Repository Method": {
     "prefix": "repo-http-method",
     "body": [
-      "Future<void> $1() {",
-      "  return _errorHandler.handleAndRefineError(() async {",
-      "",
+      "Future<void> $1()async {",
       "   final response = await _http.get(ApiEndpoints.$2);",
       "",
       "    return;",
-      "  });",
       "}"
     ]
   },
@@ -214,35 +117,6 @@
       "  });",
       "",
       "  return state.toResultWithData(null);",
-      "}"
-    ]
-  },
-  "Loading Button": {
-    "prefix": "loading-button-riverpod",
-    "body": [
-      "Consumer(",
-      "                      builder: (context, ref, child) {",
-      "                        final controller =",
-      "                            ref.watch($1Provider.notifier);",
-      "                        final state = ref.watch($1Provider);",
-      "",
-      "                        return PrimaryButton(",
-      "                          onPressed: () => _submit(controller),",
-      "                          isLoading: state.isLoading,",
-      "                          child: const Text('$1'),",
-      "                        );",
-      "                      },",
-      "                    )"
-    ]
-  },
-  "Pattern Match result": {
-    "prefix": "pattern-match-result",
-    "body": [
-      "switch (result) {",
-      "  case Failure():",
-      "    result.exception.showErrorSnackBar(context);",
-      "  case Success():",
-      "    context.showSuccessSnackBar('$1');",
       "}"
     ]
   },
@@ -302,37 +176,5 @@
       "  },",
       "),"
     ]
-  },
-  "Create a freezed Class": {
-    "prefix": "frc",
-    "body": [
-      "@freezed",
-      "class $1 with _$$1 {",
-      "",
-      "\tfactory $1() = _$1;",
-      "",
-      "\tfactory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
-      "\tMap<String, dynamic> toJson() => _$$1ToJson(this);",
-      "}"
-    ],
-    "description": "Creates a freezed Class inside a dartlang file. Useful for flutter and dart for web."
-  },
-  "Setup file for freezed annotation & Code Gen": {
-    "prefix": "frf",
-    "body": [
-      "import 'package:freezed_annotation/freezed_annotation.dart';",
-      "",
-      "part '$TM_FILENAME_BASE.freezed.dart';",
-      "part '$TM_FILENAME_BASE.g.dart';",
-      "",
-      "@freezed",
-      "class $1 with _$$1 {",
-      "",
-      "\tfactory $1() = _$1;",
-      "",
-      "\tfactory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
-      "}"
-    ],
-    "description": "Setup a file which will have freezed annotated classes."
   }
 }

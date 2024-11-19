@@ -1,0 +1,27 @@
+{
+  "Async State Notifier Class": {
+    "prefix": "async-state-notifier-class",
+    "body": [
+      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} extends StateNotifier<AsyncValue<void>> {",
+      " ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}(this._ref):_repo=_ref.watch(${TM_FILENAME_BASE/(.*)_(controller)/${1:/camelcase}/}RepositoryProvider),super(const AsyncData(null));",
+      " ",
+      " final ${TM_FILENAME_BASE/(.*)_(controller)/${1:/pascalcase}/}Repository _repo;",
+      " final AutoDisposeRef _ref;",
+      "",
+      "Future<ResultBase<void>> $1() async {",
+      "  state = const AsyncLoading();",
+      "  state = await AsyncValue.guard(() {",
+      "    return _repo.$1();",
+      "  });",
+      "",
+      "  return state.toResultWithData(null);",
+      "}",
+      "}",
+      "final ${TM_FILENAME_BASE/(.*)/${1:/camelcase}/}Provider= ",
+      "StateNotifierProvider.autoDispose<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/},AsyncValue<void>>((ref){",
+      "return ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}(ref);",
+      "});"
+    ]
+  }
+}
