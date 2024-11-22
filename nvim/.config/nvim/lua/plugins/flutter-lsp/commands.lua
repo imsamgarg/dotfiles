@@ -29,7 +29,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<leader>cfc",
-  "<cmd>lua PerformAction('Wrap with Container')<CR>",
+  "<cmd>lua PerformAction('Wrap with Center')<CR>",
   { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
@@ -52,13 +52,15 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
   "n",
-  "<leader>cfr",
+  "<leader>cfR",
   "<cmd>lua PerformAction('Wrap with Row')<CR>",
   { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
   "n",
-  "<leader>cfR",
+  "<leader>cfr",
   "<cmd>lua PerformAction('Remove this widget')<CR>",
   { noremap = true, silent = true }
 )
+-- TODO: debug this
+vim.api.nvim_set_keymap("n", "<leader>cff", "<cmd>lua PerformAction('Fix All')<CR>", { noremap = true, silent = true })
