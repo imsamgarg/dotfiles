@@ -28,14 +28,24 @@ return { -- Autoformat
         command = "stylua",
         prepend_args = { "--indent-width", "2", "--indent-type", "Spaces" },
       },
+      biome = {
+        command = "biome",
+        args = { "format", "--stdin-file-path", "$FILENAME", "--config-path=" .. vim.fn.stdpath("config") .. "/biome/" },
+      },
     },
     formatters_by_ft = {
       lua = { "stylua" },
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
-      javascript = { "prettierd", "prettier", stop_after_first = true },
-      typescript = { "prettierd", "prettier", stop_after_first = true },
-      json = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
+      typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
+      json = {
+        "biome",
+        "prettierd",
+        "prettier",
+        stop_after_first = true,
+      },
+      arb = { "prettierd", "prettier", stop_after_first = true, append_args = { "--parser", "json" } },
     },
   },
 }
