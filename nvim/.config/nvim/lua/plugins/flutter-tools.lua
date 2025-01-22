@@ -41,17 +41,18 @@ return {
         },
       },
       debugger = {
-        enabled = false,
+        enabled = true,
         run_via_dap = false,
         register_configurations = function()
           require("dap.ext.vscode").load_launchjs()
         end,
       },
       dev_log = {
-        enabled = true,
+        enabled = false,
         notify_errors = true,
         -- notify_errors = false, -- if there is an error whilst running then notify the user
         -- open_cmd = "tabedit", -- command to use to open the log buffer
+        open_cmd = "split",
       },
       fvm = true,
     })
