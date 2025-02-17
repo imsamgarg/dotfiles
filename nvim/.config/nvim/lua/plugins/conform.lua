@@ -30,13 +30,19 @@ return { -- Autoformat
       },
       biome = {
         command = "biome",
-        args = { "format", "--stdin-file-path", "$FILENAME", "--config-path=" .. vim.fn.stdpath("config") .. "/biome/" },
+        args = {
+          "format",
+          "--stdin-file-path",
+          "$FILENAME",
+          "--config-path=" .. vim.fn.stdpath("config") .. "/biome/",
+        },
       },
     },
     formatters_by_ft = {
       lua = { "stylua" },
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
+      html = { "prettierd", "prettier", stop_after_first = true },
       javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
       typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
       json = {
