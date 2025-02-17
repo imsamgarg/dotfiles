@@ -1,0 +1,11 @@
+[user]
+	name = Sam Garg
+	email = smlgarg123@gmail.com
+[includeIf "gitdir:~/personal_projects/"]
+    path = ~/.gitconfig_personal
+[includeIf "gitdir:~/work_projects/"]
+    path = ~/.gitconfig_work
+[includeIf "gitdir:~/infinite_projects/"]
+    path = ~/.gitconfig_infinite_projects
+[core]
+	editor = nvim
