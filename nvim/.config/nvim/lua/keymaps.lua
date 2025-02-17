@@ -1,5 +1,6 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>n", ":horizontal 20sp term://bash<CR>", { desc = "Open Terminal" })
+vim.keymap.set("n", "<leader>N", ":terminal<CR>", { desc = "Open Terminal in place" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -38,5 +39,12 @@ vim.api.nvim_set_keymap("n", "<leader>tQ", ":bd!<CR>", { noremap = true, silent 
 vim.api.nvim_set_keymap("n", "<leader>tl", ":bnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>th", ":bprev<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<leader>tm", ":tabmove<Space>", { noremap = true })
-vim.api.nvim_set_keymap("n", "gh", ":bnext<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "gl", ":bprev<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Tab>", ":bnext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Tab>", ":bprev<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-Tab>", "<C-^>", { noremap = true, silent = true })
+
+-- resize windows using ctrl + shift + hjkl
+vim.api.nvim_set_keymap("n", "<Tab-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Tab-j>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Tab-k>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Tab-l>", ":vertical resize +2<CR>", { noremap = true, silent = true })
