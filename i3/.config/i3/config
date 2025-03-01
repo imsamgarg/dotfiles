@@ -17,7 +17,7 @@ set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:0xProto Nerd Font 10
+font pango:0xProto Nerd Font 14
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -25,12 +25,17 @@ font pango:0xProto Nerd Font 10
 exec --no-startup-id /usr/libexec/gsd-xsettings
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id setxkbmap -option caps:swapescape
+
+exec --no-startup-id xfce4-session
+exec --no-startup-id xfsettingsd
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -47,11 +52,15 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
-bindsym Mod4+e exec xdg-open /home/sam
+bindsym Mod4+e exec xdg-open ~/
+
+# brightness
+bindsym $mod+b exec "light -U 5"
+bindsym $mod+Shift+b exec "light -A 5"
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
@@ -111,14 +120,17 @@ bindsym $mod+t focus mode_toggle
 bindsym $mod+a focus parent
 
 
-# Take a full screen screenshot with notification
-bindsym Print exec --no-startup-id gnome-screenshot -i && notify-send "Screenshot taken"
+# Take a screenshot of a selected area with notification
+bindsym Print exec --no-startup-id flameshot gui && notify-send "Screenshot taken"
 
 # Take a screenshot of a selected area with notification
-bindsym Shift+Print exec --no-startup-id gnome-screenshot -a && notify-send "Screenshot taken"
+bindsym Shift+Print exec --no-startup-id flameshot full && notify-send "Screenshot taken"
 
 # Take a screenshot of the current window with notification
-bindsym Mod1+Print exec --no-startup-id gnome-screenshot -w && notify-send "Screenshot taken"
+bindsym Mod1+Print exec --no-startup-id flameshot screen && notify-send "Screenshot taken"
+
+# Take screenshots
+exec_always flameshot &
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -211,8 +223,8 @@ set $ws_active_border_color #ca757f
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c /home/sam/.config/i3blocks/i3blocks.conf
-        font pango:0xProto Nerd Font 10
+        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+        font pango:0xProto Nerd Font 14
         position top
 
     colors {
