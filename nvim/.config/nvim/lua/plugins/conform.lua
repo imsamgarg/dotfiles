@@ -43,6 +43,7 @@ return { -- Autoformat
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
       html = { "prettierd", "prettier", stop_after_first = true },
+      python = { "blue", stop_after_first = true },
       javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
       typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
       json = {
@@ -52,6 +53,10 @@ return { -- Autoformat
         stop_after_first = true,
       },
       arb = { "prettierd", "prettier", stop_after_first = true, append_args = { "--parser", "json" } },
+      typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true, lsp_format = "never" },
+      -- typescriptreact
+      ["*"] = { "biome", "prettierd", "prettier" },
+      ["_"] = { "biome", "prettierd", "prettier" },
     },
   },
 }
