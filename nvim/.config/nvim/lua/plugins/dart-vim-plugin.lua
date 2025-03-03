@@ -5,4 +5,5 @@ return {
     vim.g.dart_html_in_string = true
     vim.g.dartfmt_options = { "--fix" }
   end,
+  enabled = false,
 }

@@ -44,7 +44,7 @@ return {
         enabled = true,
         run_via_dap = false,
         register_configurations = function()
-          require("dap.ext.vscode").load_launchjs()
+          -- require("dap.ext.vscode").load_launchjs()
         end,
       },
       dev_log = {
@@ -53,6 +53,10 @@ return {
         -- notify_errors = false, -- if there is an error whilst running then notify the user
         -- open_cmd = "tabedit", -- command to use to open the log buffer
         open_cmd = "split",
+      },
+      dev_tools = {
+        autostart = true, -- autostart devtools server if not detected
+        auto_open_browser = true, -- Automatically opens devtools in the browser
       },
       fvm = true,
     })
