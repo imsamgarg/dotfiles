@@ -58,6 +58,12 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
   "n",
+  "<leader>cfb",
+  "<cmd>lua PerformAction('Wrap with Builder')<CR>",
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
   "<leader>cfr",
   "<cmd>lua PerformAction('Remove this widget')<CR>",
   { noremap = true, silent = true }
