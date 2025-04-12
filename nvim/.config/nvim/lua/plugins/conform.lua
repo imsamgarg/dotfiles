@@ -17,7 +17,8 @@ return { -- Autoformat
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
       -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true }
+      -- local disable_filetypes = { c = true, cpp = true }
+      local disable_filetypes = {}
       return {
         timeout_ms = 5000,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -46,6 +47,7 @@ return { -- Autoformat
       python = { "blue", stop_after_first = true },
       javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
       typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
+      c = { "clang-format", stop_after_first = true },
       json = {
         "biome",
         "prettierd",
@@ -54,6 +56,7 @@ return { -- Autoformat
       },
       arb = { "prettierd", "prettier", stop_after_first = true, append_args = { "--parser", "json" } },
       typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true, lsp_format = "never" },
+      javascriptreact = { "biome", "prettierd", "prettier", stop_after_first = true, lsp_format = "never" },
       -- typescriptreact
       ["*"] = { "biome", "prettierd", "prettier" },
       ["_"] = { "biome", "prettierd", "prettier" },
