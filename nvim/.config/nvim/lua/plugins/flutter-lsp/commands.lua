@@ -1,5 +1,5 @@
 -- Function to trigger "Wrap with Widget"
-function PerformAction(title)
+function PerformAction(title, kind)
   local params = vim.lsp.util.make_range_params()
 
   params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
@@ -9,10 +9,11 @@ function PerformAction(title)
     if result then
       -- Loop through available code actions
       for _, action in pairs(result) do
-        print(action.title)
-        if action.title == title then
-          print(vim.inspect(action))
-
+        if kind then
+          if action.kind == kind then
+            vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
+          end
+        elseif action.title == title or string.find(action.title, title) then
           vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
         end
       end
@@ -64,9 +65,22 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
   "n",
+  "<leader>cfe",
+  "<cmd>lua PerformAction('Wrap with Expanded')<CR>",
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
   "<leader>cfr",
   "<cmd>lua PerformAction('Remove this widget')<CR>",
   { noremap = true, silent = true }
 )
 -- TODO: debug this
-vim.api.nvim_set_keymap("n", "<leader>cff", "<cmd>lua PerformAction('Fix All')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>cff",
+
+  -- kind = "quickfix.import.libraryProject3"
+  "<cmd>lua PerformAction('Import library','quickfix.import.libraryProject3')<CR>",
+  { noremap = true, silent = true }
+)
