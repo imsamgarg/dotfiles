@@ -1,0 +1,77 @@
+{
+  "Submit": {
+    "prefix": "submit",
+    "body": [
+      "Future<void> _submit($1 controller) async {",
+      "  final isConfirmed = await context.showConfirmationDialog(",
+      "    message: \"Are you sure want to $2?\",",
+      "  );",
+      "",
+      "  if (!isConfirmed) return;",
+      "",
+      "  final result = await controller.$3();",
+      "  if (!mounted) return;",
+      "",
+      "  switch (result) {",
+      "    case Success():",
+      "      context.showSuccessPopup(\"$4\");",
+      "    case Failure(:final exception):",
+      "      context.showErrorPopup(exception);",
+      "  }",
+      "}",
+    ],
+  },
+  "GoRoute": {
+    "prefix": "go-route",
+    "body": [
+      "GoRoute(",
+      "path: AppRoutes.$1,",
+      "builder: (context, state) {return $2();},",
+      "routes:[]",
+      "),",
+    ],
+  },
+  "Gap": {
+    "prefix": "gap",
+    "body": ["Gap(context.insets.$1),"],
+  },
+  "TextButton": {
+    "prefix": "text-button",
+    "body": [
+      "TextButton(",
+      "  onPressed: {},",
+      "  style: TextButton.styleFrom(),",
+      "  child: Text(context.l10n.$2),",
+      "),",
+    ],
+  },
+  "TextButtonWithIcon": {
+    "prefix": "text-button-icon",
+    "body": [
+      "TextButton.icon(",
+      "  onPressed: {},",
+      "  icon: Icon($1),",
+      "  style: TextButton.styleFrom(),",
+      "  label: Text(context.l10n.$2),",
+      "),",
+    ],
+  },
+  "RoundedRectangleBorder": {
+    "prefix": "rounded-rectangle-border",
+    "body": [
+      "RoundedRectangleBorder(",
+      "  borderRadius: context.corners.$1,",
+      "  side: BorderSide(),",
+      "),",
+    ],
+  },
+  "RoundedSuperEclipseBorder": {
+    "prefix": "rounded-super-ellipse-border",
+    "body": [
+      "RoundedSuperellipseBorder(",
+      "  borderRadius: context.corners.$1,",
+      "  side: BorderSide(),",
+      "),",
+    ],
+  },
+}

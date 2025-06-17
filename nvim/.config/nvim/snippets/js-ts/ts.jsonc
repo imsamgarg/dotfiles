@@ -1,0 +1,20 @@
+// export const gender = {
+//   male: "male",
+//   female: "female",
+//   other: "other",
+// } as const;
+//
+// export type Gender = (typeof gender)[keyof typeof gender];
+//
+// export const genders = Object.values(gender);
+{
+  "Enum": {
+    "prefix": "enum",
+    "body": [
+      "export const $1 ={} as const;\n",
+      // convert $1 to PascalCase for type name
+      "export type ${1/(.*)/${1:/pascalcase}/} = (typeof $1)[keyof typeof $1];\n",
+      "export const ${1/(.*)/${1:/pascalcase}/}s = Object.values($1);",
+    ],
+  },
+}

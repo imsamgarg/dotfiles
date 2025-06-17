@@ -8,7 +8,6 @@
       "\tfactory $1({}) = _$1;",
       "",
       "\tfactory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
-      "\tMap<String, dynamic> toJson() => _$$1ToJson(this);",
       "}"
     ],
     "description": "Creates a freezed Class inside a dartlang file. Useful for flutter and dart for web."

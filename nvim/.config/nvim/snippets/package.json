@@ -8,7 +8,7 @@
       },
       {
         "language": "dart",
-        "path": "./riverpod_repo.json"
+        "path": "./riverpod_repo.jsonc"
       },
       {
         "language": "dart",
@@ -21,6 +21,18 @@
       {
         "language": "dart",
         "path": "./riverpod-controller.json"
+      },
+      {
+        "language": "dart",
+        "path": "./popup.json"
+      },
+      {
+        "language": "dart",
+        "path": "./flutter.jsonc"
+      },
+      {
+        "language": "typescript",
+        "path": "./js-ts/ts.jsonc"
       }
     ]
   }

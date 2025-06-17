@@ -176,5 +176,18 @@
       "  },",
       "),"
     ]
+  },
+  "Confirm": {
+    "prefix": "confirm",
+    "body": [
+      "final isConfirmed = await context.showConfirmationPopup(",
+      "  \"Are you sure want to $1?\",",
+      ");",
+      "if (!isConfirmed) return;"
+    ]
+  },
+  "FutureFunction": {
+    "prefix": "future-function",
+    "body": ["Future<void> $1() async {", "}"]
   }
 }
