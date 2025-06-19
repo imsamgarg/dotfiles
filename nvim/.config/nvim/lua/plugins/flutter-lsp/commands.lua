@@ -34,13 +34,12 @@ function RegisterWrapWith(widget, key)
   vim.api.nvim_set_keymap(
     "n",
     "<leader>cf" .. key,
-    "<cmd>lua PerformAction('Wrap with " .. widget .. "...')<CR>",
+    "<cmd>lua PerformAction('Wrap with " .. widget .. "')<CR>",
     { noremap = true, silent = true }
   )
 end
 
 -- Register wrap with widgets
-RegisterWrapWith("Widget", "w")
 RegisterWrapWith("Center", "c")
 RegisterWrapWith("Column", "C")
 RegisterWrapWith("Padding", "p")
@@ -50,6 +49,7 @@ RegisterWrapWith("Builder", "b")
 RegisterWrapWith("Expanded", "e")
 RegisterWrapWith("Flexible", "E")
 RegisterWrapWith("ValueListenableBuilder", "v")
+RegisterUsingTitle("Wrap with widget...", "w")
 RegisterUsingTitle("Remove this widget", "r")
 
 -- vim.api.nvim_set_keymap(
